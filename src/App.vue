@@ -2,16 +2,19 @@
   <NavBar />
   <Header />
   <router-view/>
+  <Footer/>
 </template>
 
 <script>
 import Header from '@/components/HeaderComp.vue'
 import NavBar from '@/components/NavComp.vue'
+import Footer from '@/components/FooterComp.vue'
 
 export default{
   components: {
     Header,
-    NavBar
+    NavBar,
+    Footer
   }
 }
 </script>

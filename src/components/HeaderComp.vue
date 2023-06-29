@@ -13,7 +13,7 @@
 
 <style scoped>
     .intro{
-        background:  linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)), url(https://i.postimg.cc/5NWmYVY5/jason-blackeye-XYrjl3j7smo-unsplash.jpg) center no-repeat;
+        background:  linear-gradient(rgba(0, 0, 0, 0.7),rgba(0, 0, 0, 0.7)), url(https://images.pexels.com/photos/16445140/pexels-photo-16445140/free-photo-of-hand-holding-bicycle.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1) center no-repeat;
         object-fit: cover;
         min-height: 100dvh;
         background-size: cover;

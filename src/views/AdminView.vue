@@ -34,17 +34,31 @@
 </template>
 
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
-export default{
-  data(){
-    return{
-      bikeArr: []
+// export default{
+//   data(){
+//     return{
+//       bikeArr: []
+//     }
+//   },
+//   async mounted(){
+//     const getData = await axios.get('https://lc1007.github.io/cyclesVueApp/cycleprods.json')
+//     this.bikeArr = getData.data.Bikes
+//   }
+// }
+
+import { useStore } from 'vuex';
+
+export default {
+  computed: {
+    bikeArr(){
+      return this.$store.state.bikeArr
     }
   },
-  async mounted(){
-    const getData = await axios.get('https://lc1007.github.io/cyclesVueApp/cycleprods.json')
-    this.bikeArr = getData.data.Bikes
+  mounted(){
+    const store = useStore()
+    store.dispatch('getData')
   }
 }
 </script>

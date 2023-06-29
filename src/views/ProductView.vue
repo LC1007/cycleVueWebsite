@@ -16,17 +16,17 @@
 </template>
 
 <script>
-import axios from 'axios'
+import { useStore } from 'vuex';
 
-export default{
-  data(){
-    return{
-      bikeArr: []
+export default {
+  computed: {
+    bikeArr(){
+      return this.$store.state.bikeArr // Here I'm getting the new data from the state by using the this.$store.state.bikeArr
     }
   },
-  async mounted(){
-    const getData = await axios.get('https://lc1007.github.io/cyclesVueApp/cycleprods.json')
-    this.bikeArr = getData.data.Bikes
+  mounted(){
+    const store = useStore() // here I'm telling the application to use the store
+    store.dispatch('getData') // here I'm dispatching the data which means its now going to trigger the action in the store which will then trigger the commit (which triggers the mutation to get the the new data)
   }
 }
 </script>

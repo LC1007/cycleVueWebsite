@@ -11,6 +11,23 @@
           <p>Our shop offers a wide range of high-quality bikes, from mountain bikes built to conquer rugged terrains to sleek road bikes designed for speed and endurance. We also have comfortable and practical city bikes for urban commuters and BMX bikes for those seeking to perform exciting tricks and stunts.</p>
       </div>
     </div>
+    <!-- Contact Section -->
+    <div>
+      <h1 class="display-6 text-uppercase m-5 text-center">Contact Us</h1>
+      <form class="form">
+        <div class="mb-3">
+          <label for="exampleFormControlInput1" class="form-label">Email address</label>
+          <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com">
+        </div>
+        <div class="mb-5">
+          <label for="exampleFormControlTextarea1" class="form-label">Message</label>
+          <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+        </div>
+        <div class="d-flex justify-content-center">
+          <button class="btn btn-primary">Send</button>
+        </div>
+      </form>
+    </div>
   </div>
 </template>
 
