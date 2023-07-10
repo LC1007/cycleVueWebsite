@@ -5,6 +5,7 @@
 <button type="button" class="btn btn-primary mb-4" data-bs-toggle="modal" data-bs-target="#exampleModal">
     Add Bike
   </button>
+  <button class="btn btn-primary mb-4 mx-1" @click="sortArr">Sort</button>
   
   <!-- Modal -->
   <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -16,24 +17,25 @@
         </div>
         <div class="modal-body">
             <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Bike Name</label>
-                <input type="email" class="form-control" id="exampleFormControlInput1">
+                <label for="bikeName" class="form-label">Bike Name</label>
+                <input type="email" class="form-control" id="bikeName" v-model="postData.bikeName">
               </div>
               <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label">Bike Price</label>
-                <input type="number" class="form-control" id="exampleFormControlInput1">
+                <label for="bikePrice" class="form-label">Bike Price</label>
+                <input type="number" class="form-control" id="bikePrice" v-model="postData.bikePrice">
+              </div>
+              <div class="mb-3">
+                <label for="bikeImage" class="form-label">Bike Image</label>
+                <input type="url" class="form-control" id="bikeImage" v-model="postData.bikeImage">
               </div>
               <div class="mb-5">
-                <label for="exampleFormControlTextarea1" class="form-label">Description</label>
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-              </div>
-              <div class="d-flex justify-content-center">
-                <button class="btn btn-primary">Send</button>
+                <label for="bikeDesc" class="form-label">Description</label>
+                <textarea class="form-control" id="bikeDesc" rows="3" v-model="postData.bikeDesc"></textarea>
               </div>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" @click="setPost">Save changes</button>
         </div>
       </div>
     </div>
@@ -71,23 +73,38 @@
 </template>
 
 <script>
-// import axios from 'axios'
-
-// export default{
-//   data(){
-//     return{
-//       bikeArr: []
-//     }
-//   },
-//   async mounted(){
-//     const getData = await axios.get('https://lc1007.github.io/cyclesVueApp/cycleprods.json')
-//     this.bikeArr = getData.data.Bikes
-//   }
-// }
 
 import { useStore } from 'vuex';
 
 export default {
+  data(){
+    return{
+      postData:{
+        bikeName: '',
+        bikePrice: '',
+        bikeImage: '',
+        bikeDesc: ''
+      }
+    }
+  },
+  methods:{
+    setPost(){
+      fetch('https://lc1007.github.io/cyclesVueApp/cycleprods.json',{
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          bikeName: this.bikeName,
+          bikePrice: this.bikePrice,
+          bikeImage: this.bikeImage,
+          bikeDesc: this.bikeDesc
+        })
+      })
+      .then(res => res.json())
+      .then(data => console.log(data))
+    }
+  },
   computed: {
     bikeArr(){
       return this.$store.state.bikeArr

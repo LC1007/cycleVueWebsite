@@ -8,6 +8,7 @@
               <h4 class="card-title">{{ item.name }}</h4>
               <p class="card-text">{{ item.description }}</p>
               <p class="card-text">R{{ item.price }}</p>
+              <router-link :to="{ name: 'byProduct', params:{id: item.id}, query: { name: item.name, description: item.description, img: item.image, price: item.price} }"><button class="btn btn-primary me-2">Read More</button></router-link>
               <button class="btn btn-primary">Buy Now</button>
             </div>
         </div>
@@ -16,17 +17,27 @@
 </template>
 
 <script>
-import { useStore } from 'vuex';
+// import { useStore } from 'vuex';
 
 export default {
+  name: "App",
   computed: {
     bikeArr(){
       return this.$store.state.bikeArr // Here I'm getting the new data from the state by using the this.$store.state.bikeArr
     }
   },
+  methods:{
+    goToProduct(){
+      this.$router.push({
+        name: this.name,
+        params: this.params.id,
+        query: this.query.name
+      })
+    }
+  },
   mounted(){
-    const store = useStore() // here I'm telling the application to use the store
-    store.dispatch('getData') // here I'm dispatching the data which means its now going to trigger the action in the store which will then trigger the commit (which triggers the mutation to get the the new data)
+    // const store = useStore() // here I'm telling the application to use the store
+    this.$store.dispatch('getData') // here I'm dispatching the data which means its now going to trigger the action in the store which will then trigger the commit (which triggers the mutation to get the the new data)
   }
 }
 </script>
